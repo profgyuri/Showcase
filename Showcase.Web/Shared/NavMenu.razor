@@ -1,29 +1,19 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">Showcase.Web</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</div>
+﻿@inject NavigationManager navi
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-    </nav>
-</div>
+<nav>
+        <a class="nav-link @(activeIndex == 1 ? "activated" : "")" href="" onclick="@(() => SetActiveIndex(1))">
+                Home
+        </a>
+        <a class="nav-link @(activeIndex == 2 ? "activated" : "")" href="/bits" onclick="@(() => SetActiveIndex(2))">
+                Small scripts
+        </a>
+</nav>
 
-@code {
-    private bool collapseNavMenu = true;
+@code{
+    int activeIndex = 1;
 
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
+    private void SetActiveIndex(int i)
     {
-        collapseNavMenu = !collapseNavMenu;
+        activeIndex = i;
     }
 }
