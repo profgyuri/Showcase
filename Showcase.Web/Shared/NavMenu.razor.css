@@ -1,45 +1,61 @@
 nav {
+    --background-color: #323240;
+    --accent-color: #DCF235;
     display: grid;
     grid-template-columns: auto auto auto auto auto;
     grid-gap: 3rem;
-    min-height: clamp(2rem, 8vh, 3rem);
+    height: 3rem;
     position: relative;
-    background-color: #2F4F4F;
+    background-color: var(--background-color);
     justify-content: center;
     align-items: center;
     padding: .5rem;
-    display: flex;
-    align-items: center;
 }
 
 .nav-link {
+    display: inline-block;
     text-decoration: none;
     text-align: center;
-    color: #BFD9D9;
+    color: var(--accent-color);
     font-size: 1.65rem;
     position: relative;
 }
 
-.nav-link::before {
-    content: "";
+.nav-link-children {
+    display: none;
     position: absolute;
-    width: 120%;
-    height: 150%;
-    margin: -.5rem;
+    width: 100%;
+    overflow: auto;
 }
+
+    .nav-link .child {
+        background-color: var(--background-color);
+        }
+
+    .nav-link::before {
+        content: "";
+        position: absolute;
+        width: 120%;
+        height: 150%;
+        margin: -2rem;
+    }
 
     .nav-link::after {
         content: "";
         position: absolute;
         width: 100%;
-        height: 2px;
-        background-color: #BFD9D9;
+        height: 0.133rem;
+        background-color: var(--accent-color);
         bottom: 0;
         left: 0;
         transform: scaleX(0);
         transition: transform .25s linear;
     }
 
+        .nav-link:hover .nav-link-children {
+            display: block;
+        }
+    
         .nav-link:hover::after,
         .nav-link:focus::after{
             transform: scaleX(1);
@@ -47,9 +63,12 @@ nav {
 
 .activated::before {
     content: "";
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
     position: absolute;
     width: 120%;
     height: 150%;
-    box-shadow: 0 0 0 2px #BFD9D9;
+    box-shadow: 0 0 0 0.133rem var(--accent-color);
     margin: -.5rem;
 }

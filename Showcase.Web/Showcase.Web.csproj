@@ -11,4 +11,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="CodeBase, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\My Utils\CodeBase\CodeBase\bin\Release\net6.0\CodeBase.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
