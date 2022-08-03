@@ -1,10 +1,10 @@
 ﻿@inject NavigationManager navi
 
 <nav>
-        <a class="nav-link @(activeIndex == 1 ? "activated" : "")" href="/Showcase" onclick="@(() => SetActiveIndex(1))">
+        <a class="nav-link @(activeIndex == 1 ? "activated" : "")" href="/" onclick="@(() => SetActiveIndex(1))">
                 Home
         </a>
-        <a class="nav-link @(activeIndex == 2 ? "activated" : "")" href="/Showcase/bits" onclick="@(() => SetActiveIndex(2))">
+        <a class="nav-link @(activeIndex == 2 ? "activated" : "")" href="/bits/" onclick="@(() => SetActiveIndex(2))">
                 Small scripts
         </a>
 </nav>
