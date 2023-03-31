@@ -1,0 +1,36 @@
+﻿@inherits ComponentBase
+
+<div class="project-card">
+    <div class="image-container">
+        <img class="project-image" src="@ImageUrl" alt="@Title" />
+    </div>
+    <div class="content-container">
+        <h2 class="project-title">@Title</h2>
+        <p class="project-description">@Description</p>
+        <div class="button-container">
+            <a class="project-link" href="@GitHubUrl" target="_blank">View on GitHub</a>
+            @if (!string.IsNullOrEmpty(DownloadUrl))
+            {
+                <a class="download-link" href="@DownloadUrl" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                        <path d="M12 16l4-5h-3V4h-2v7H8z"></path>
+                        <path d="M21 18v2H3v-2H1v4h22v-4z"></path>
+                    </svg>
+                </a>
+            }
+        </div>
+    </div>
+</div>
+
+@code{
+    [Parameter]
+    public string ImageUrl { get; set; }
+    [Parameter]
+    public string Title { get; set; }
+    [Parameter]
+    public string Description { get; set; }
+    [Parameter]
+    public string GitHubUrl { get; set; }
+    [Parameter]
+    public string DownloadUrl { get; set; }
+}

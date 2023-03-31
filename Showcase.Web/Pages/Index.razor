@@ -1,10 +1,36 @@
 ﻿@page "/" 
 @page "/Showcase/"
+@using Showcase.Web.Shared.Components
 <!-- I have to do both routes otherwise github pages stops working. -->
 
 <PageTitle>Showcase</PageTitle>
 
 <h1>My Projects</h1>
 
-<p>Welcome to the collection of my own codebase. Here I will demonstrate the work I'm doing in my freetime. 
-    Every project contains a link to it's own github repo page. Happy exploring!</p>
+<div class="container">
+    <p>Welcome to the collection of my own codebase. Here I will demonstrate the work I'm doing in my freetime. 
+            Every project contains a link to it's own github repo page. Happy exploring!</p>
+</div>
+
+<div class="project-container">
+    <ProjectCard
+        ImageUrl="/icon-192.png"
+        Title="Listen2Me"
+        Description="My own music player application, utilizing an SqLite database."
+        GitHubUrl="https://github.com/profgyuri/Listen2MeRefined" 
+        DownloadUrl="https://github.com/profgyuri/Listen2MeRefined/releases/"/>
+
+    <ProjectCard
+        ImageUrl="e:\!Programming\en.jpg"
+        Title="Prime Number Speed Test"
+        Description="This is a brief description of project 2."
+        GitHubUrl="https://github.com/user/project2" />
+</div>
+
+<style>
+    .project-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+</style>
