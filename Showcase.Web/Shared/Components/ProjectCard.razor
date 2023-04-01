@@ -1,22 +1,21 @@
 ﻿@inherits ComponentBase
 
-<div class="project-card" style="background-image: url('@ImageUrl')">
+<div class="project-card">
+    <div class="project-image-container" style="background-image: url('@ImageUrl');"></div>
     <div class="overlay">
         <h2 class="project-title">@Title</h2>
-        <div class="project-info">
-            <p class="project-description">@Description</p>
-            <div class="button-container">
-                <a class="project-link" href="@GitHubUrl" target="_blank">View on GitHub</a>
-                @if (!string.IsNullOrEmpty(DownloadUrl))
-                {
-                    <a class="download-link" href="@DownloadUrl" target="_blank">
+        <p class="project-description">@Description</p>
+        <div class="button-container">
+            <a class="project-link" href="@GitHubUrl" target="_blank">View on GitHub</a>
+            @if (!string.IsNullOrEmpty(DownloadUrl))
+            {
+                <a class="download-link" href="@DownloadUrl" target="_blank">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
                             <path d="M12 16l4-5h-3V4h-2v7H8z"></path>
                             <path d="M21 18v2H3v-2H1v4h22v-4z"></path>
-                        </svg>
-                    </a>
-                }
-            </div>
+                        </svg>                
+                </a>
+            }
         </div>
     </div>
 </div>
