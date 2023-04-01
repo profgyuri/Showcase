@@ -68,7 +68,7 @@ nav {
     border-radius: 7px;
     position: absolute;
     width: 120%;
-    height: 150%;
+    height: 130%;
     box-shadow: 0 0 0 0.133rem var(--accent-color);
     margin: -.5rem;
 }
