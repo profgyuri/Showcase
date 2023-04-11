@@ -7,7 +7,7 @@
         <p class="project-description">@Description</p>
         <div class="button-container">
             <a class="project-link" href="@GitHubUrl" target="_blank">View on GitHub</a>
-            @if (!string.IsNullOrEmpty(DownloadUrl))
+            @if (IsDownloadButtonVisible)
             {
                 <a class="download-link" href="@DownloadUrl" target="_blank">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -21,6 +21,8 @@
 </div>
 
 @code{
+    private string DownloadUrl => GitHubUrl + "/releases";
+
     [Parameter]
     public string ImageUrl { get; set; }
     [Parameter]
@@ -30,5 +32,5 @@
     [Parameter]
     public string GitHubUrl { get; set; }
     [Parameter]
-    public string DownloadUrl { get; set; }
+    public bool IsDownloadButtonVisible { get; set; }
 }
