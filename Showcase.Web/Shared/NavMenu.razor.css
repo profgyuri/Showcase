@@ -1,9 +1,9 @@
 nav {
     --background-color: #323240;
     --accent-color: #DCF235;
-    display: grid;
-    grid-template-columns: auto auto auto auto auto;
-    grid-gap: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 3rem;
     position: relative;
     background-color: var(--background-color);
@@ -13,12 +13,14 @@ nav {
 }
 
 .nav-link {
-    display: inline-block;
+    display: inline-flex;
     text-decoration: none;
     text-align: center;
     color: var(--accent-color);
     font-size: 1.65rem;
     position: relative;
+    white-space: nowrap;
+    margin: 0 1.5rem;
 }
 
 .nav-link-children {
@@ -71,4 +73,8 @@ nav {
     height: 130%;
     box-shadow: 0 0 0 0.133rem var(--accent-color);
     margin: -.5rem;
+}
+
+.no-wrap {
+    white-space: nowrap;
 }
