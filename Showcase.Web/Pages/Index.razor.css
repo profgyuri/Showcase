@@ -17,7 +17,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 2rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    max-width: 100rem; /* 3 project cards at 350px max-width each + 1rem margin on each side */
+    margin: 0 auto; /* Center the container horizontally */
 }
