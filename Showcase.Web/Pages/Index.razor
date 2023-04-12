@@ -1,8 +1,104 @@
-﻿@page "/"
+@page "/" 
 @page "/Showcase/"
+@using Showcase.Web.Shared.Components
+@inject IJSRuntime JSRuntime
+
+<!-- I have to do both routes otherwise github pages stops working. -->
 
 <PageTitle>Showcase</PageTitle>
 
-<h1>My Projects</h1>
+<h1>Welcome!</h1>
 
-<p>Welcome to the collection of my own codebase. Here I will demonstrate the work I'm doing in my freetime. Every project contains a link to it's own github repo page. Happy exploring!</p>
+<div class="container">
+    <p>
+        My name is György Turbék, a C# developer with a strong focus on the WPF framework. 
+        I have a keen interest in the .NET Core framework and am currently expanding my skill set by learning Blazor and building this website. 
+        Below, you'll find a showcase of some of my projects that demonstrate my capabilities and growth as a developer.
+    </p>
+</div>
+
+
+<div class="project-container">
+    <ProjectCard
+        ImageUrl="/Pictures/Listen2Me_portfolio.jpg"
+        Title="Listen2Me"
+        Description="My flagship project, a music player application under non-stop development, including a ton of features."
+        GitHubUrl="https://github.com/profgyuri/Listen2MeRefined" 
+        IsDownloadButtonVisible="true"/>
+
+    <ProjectCard
+        ImageUrl="/Pictures/WordCounter_portfolio.jpg"
+        Title="Word Counter"
+        Description="Counts the number of occurances of the words in a file, and sorts them in descending order."
+        GitHubUrl="https://github.com/profgyuri/WordCounter"
+        IsDownloadButtonVisible="true"/>
+
+    <ProjectCard
+        ImageUrl="/Pictures/PrimeSpeedTest_portfolio.jpg"
+        Title="Language Speeds"
+        Description="Comparing 6 programming languages in running time, using a prime number calculating algorithhm."
+        GitHubUrl="https://github.com/profgyuri/PrimeSpeedTest"
+        IsDownloadButtonVisible="false"/>
+
+    <ProjectCard
+        ImageUrl="/Pictures/NetworkMonitor_portfolio.jpg"
+        Title="Network Monitor"
+        Description="Displays some basic information about the system's internet usage since booting."
+        GitHubUrl="https://github.com/profgyuri/NetworkMonitor"
+        IsDownloadButtonVisible="true"/>
+
+    <ProjectCard
+        ImageUrl="/Pictures/DatabaseFaker_portfolio.jpg"
+        Title="Database Faker"
+        Description="Filles an MSSQL database table with fake data for practicing purposes."
+        GitHubUrl="https://github.com/profgyuri/DatabaseFaker"
+        IsDownloadButtonVisible="false"/>
+
+    <ProjectCard
+        ImageUrl="/Pictures/ProjectDashboard_portfolio.jpg"
+        Title="Project Dashboard"
+        Description="A centralized place for my projects to open solution files in different IDEs, and run their executables."
+        GitHubUrl="https://github.com/profgyuri/ProjectDashboard"
+        IsDownloadButtonVisible="false"/>
+</div>
+
+<div class="contact-section">
+    <h2>Contact Me</h2>
+    <p>If you'd like to get in touch, discuss a project, or just say hi, feel free to reach out!</p>
+    <div class="contact-buttons">
+        <a class="contact-button" href="https://github.com/profgyuri/" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+            </svg>
+        </a>
+        <a class="contact-button" href="https://www.linkedin.com/in/gy%C3%B6rgy-turb%C3%A9k-b1abba169/" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <rect x="4" y="4" width="16" height="16" rx="2" />
+              <line x1="8" y1="11" x2="8" y2="16" />
+              <line x1="8" y1="8" x2="8" y2="8.01" />
+              <line x1="12" y1="16" x2="12" y2="11" />
+              <path d="M16 16v-3a2 2 0 0 0 -4 0" />
+            </svg>
+        </a>
+        <div class="email-container">
+            <span class="email">gyorgy.turbek@gmail.com</span>
+            <button style="border:0" class="contact-button copybutton" @onclick="copyToClipboard">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <rect x="8" y="8" width="12" height="12" rx="2" />
+                  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+@code {
+    private async Task copyToClipboard()
+    {
+        var email = "gyorgy.turbek@gmail.com";
+        await JSRuntime.InvokeVoidAsync("navigator.clipboard.writeText", email);
+    }
+}

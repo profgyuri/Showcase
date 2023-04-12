@@ -1,0 +1,107 @@
+﻿h1 {
+    font-size: 3rem;
+    text-align: center;
+    color: #DCF235;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.project-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 90rem; /* 3 project cards at 350px max-width each + 1rem margin on each side */
+    margin: 0 auto; /* Center the container horizontally */
+}
+
+.contact-section {
+    background-color: #323240;
+    padding: 3rem;
+    text-align: center;
+    border-radius: 7px;
+    margin-top: 2rem;
+    box-shadow: 0 0 0 0.133rem #DCF235;
+}
+
+    .contact-section h2 {
+        font-size: 2rem;
+        color: #DCF235;
+        margin-bottom: 1rem;
+    }
+
+    .contact-section p {
+        font-size: 1.2rem;
+        color: #E0E0E0;
+        margin-bottom: 2rem;
+    }
+
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.contact-button {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #DCF235;
+    background-color: #323240;
+    padding: 0.25rem;
+    border-radius: 7px;
+    transition: background-color 0.25s, color 0.25s;
+}
+
+    .contact-button:hover,
+    .contact-button:focus {
+        background-color: #DCF235;
+        color: #323240;
+    }
+
+.email {
+    font-size: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    background-color: transparent;
+    color: #E0E0E0;
+    margin-left: 2rem;
+}
+
+    .email:hover,
+    .email:focus {
+        color: #DCF235;
+    }
+
+.email-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.copy-to-clipboard {
+    font-size: 1rem;
+    background-color: #DCF235;
+    color: #323240;
+    padding: 0.5rem 1rem;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.25s, color 0.25s;
+}
+
+    .copy-to-clipboard:hover,
+    .copy-to-clipboard:focus {
+        background-color: #323240;
+        color: #DCF235;
+    }
+
+    .copybutton:active {
+        background-color: #292937;
+        color: #BAD030;
+    }
