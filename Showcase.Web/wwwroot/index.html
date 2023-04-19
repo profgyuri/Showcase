@@ -8,6 +8,24 @@
     <base href="/" />
     <link href="css/app.css" rel="stylesheet" />
     <link href="Showcase.Web.styles.css" rel="stylesheet" />
+
+    <!-- Google tag (gtag.js) -->
+    <script src="analytics-config.js"></script>
+    <script>
+        (function () {
+            const gaScript = document.createElement('script');
+            gaScript.async = true;
+            gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+            document.head.appendChild(gaScript);
+        })();
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', GA_MEASUREMENT_ID);
+    </script>
 </head>
 
 <body>
