@@ -26,6 +26,10 @@ jobs:
       - name: Publish .NET Core Project
         run: dotnet publish Showcase.Web/Showcase.Web.csproj -c Release -o release --nologo
       # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
+      - name: List files in publish folder
+        run: |
+          echo "Listing files in ${{ env.PUBLISH_DIR }}"
+          ls -al ${{ env.PUBLISH_DIR }}
       - name: Change base-tag in index.html from / to Showcase
         if: success()
         uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
