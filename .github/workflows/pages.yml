@@ -17,11 +17,6 @@ jobs:
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: 6.0.x
-          
-      # Cache busting for CSS
-      - name: Cache busting
-        run: |
-          find . -type f -name "*.html" -exec sed -i "s/\.css/.css?v=$(date +%s)/g" {} \;
 
       # Publish the site
       - name: Publish
