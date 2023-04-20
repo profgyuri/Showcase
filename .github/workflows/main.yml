@@ -38,6 +38,11 @@ jobs:
         with:
           html_path: ${{ env.PUBLISH_DIR }}/index.html
           base_href: Showcase
+      # Cache busting for CSS
+      - name: Cache busting
+        run: |
+          find ${{ env.PUBLISH_DIR }} -type f -name "*.html" -exec sed -i "s/\.css/.css?v=$(date +%s)/g" {} \;
+
       - name: Add .nojekyll file
         run: touch release/wwwroot/.nojekyll
       - name: Commit wwwroot to GitHub Pages
