@@ -112,14 +112,21 @@
     {
         var prepositions = verbsWithPrepositions.Values.ToHashSet();
 
-        if (string.IsNullOrEmpty(userPreposition) || !prepositions.Contains(userPreposition))
+        if (string.IsNullOrEmpty(userPreposition))
+        {
+            return;
+        }
+
+        var guess = userPreposition.ToLower();
+
+        if (!prepositions.Contains(guess))
         {
             feedbackMessage = "";
             disableNext = true;
             return;
         }
 
-        if (userPreposition == verbsWithPrepositions[currentVerb])
+        if (guess == verbsWithPrepositions[currentVerb])
         {
             feedbackMessage = "Richtig!";
             disableNext = false;
