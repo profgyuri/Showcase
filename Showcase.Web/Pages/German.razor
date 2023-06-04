@@ -1,0 +1,139 @@
+﻿@page "/german/"
+@page "/Showcase/german/"
+
+<h1>German Practice</h1>
+
+<div class="container">
+    <h2>Präpositionen</h2>
+
+    <div class="verb-container">
+        <p>Verb:</p>
+        <p>@currentVerb</p>
+    </div>
+
+    <div class="input-container">
+        <p>Präposition:</p>
+        <input value="@userPreposition" @oninput="@(e => { userPreposition = e.Value.ToString(); CheckPreposition(); })" class="input-field" />
+    </div>
+
+    <button @onclick="NextVerb" class="btn" disabled=@disableNext>Next</button>
+
+    @if (!string.IsNullOrEmpty(feedbackMessage))
+    {
+        <p class="feedback-message">@feedbackMessage</p>
+    }
+</div>
+
+@code {
+    Dictionary<string, string> verbsWithPrepositions = new Dictionary<string, string>
+    {
+        { "Spaß haben (DAT)", "an" },
+        { "teilnehmen (DAT)", "an" },
+        { "denken (AKK)", "an" },
+        { "sich erinnern (AKK)", "an" },
+        { "sich gewöhnen (AKK)", "an" },
+        { "glauben (AKK)", "an" },
+        { "bestehen (DAT)", "aus" },
+        { "Mitleid haben (DAT)", "mit" },
+        { "glücklich sein (DAT)", "mit" },
+        { "sich streiten (DAT)", "mit" },
+        { "unzufrieden sein (DAT)", "mit" },
+        { "anfangen (DAT)", "mit" },
+        { "beginnen (DAT)", "mit" },
+        { "einverstanden sein (DAT)", "mit" },
+        { "verheiratet sein (DAT)", "mit" },
+        { "verlobt sein (DAT)", "mit" },
+        { "Schluss machen (DAT)", "mit" },
+        { "sprechen (DAT, with someone)", "mit" },
+        { "sich sehnen (DAT)", "nach" },
+        { "riechen (DAT)", "nach" },
+        { "schmecken (DAT)", "nach" },
+        { "sich erkündigen (DAT)", "nach" },
+        { "sich ekeln (DAT)", "vor" },
+        { "sich fürchten (DAT)", "vor" },
+        { "Angst haben (DAT)", "vor" },
+        { "weinen (DAT)", "vor" },
+        { "enttäuscht sein (DAT)", "von" },
+        { "schwärmen (DAT)", "von" },
+        { "hören (DAT)", "von" },
+        { "begeistert sein (DAT)", "von" },
+        { "abhängig sein (DAT)", "von" },
+        { "sprechen (DAT, about something)", "von" },
+        { "reden (DAT)", "von" },
+        { "träumen (DAT)", "von" },
+        { "wütend sein (AKK, person or object)", "auf" },
+        { "sich freuen (AKK, will happen soon)", "auf" },
+        { "hoffen (AKK)", "auf" },
+        { "solz sein (AKK)", "auf" },
+        { "aufpassen (AKK)", "auf" },
+        { "warten (AKK)", "auf" },
+        { "verzichten (AKK)", "auf" },
+        { "böse sein (AKK)", "auf" },
+        { "sich verlieben (AKK)", "in" },
+        { "sich Sorgen (AKK)", "um" },
+        { "beneiden (AKK)", "um" },
+        { "bitten (AKK)", "um" },
+        { "sich kümmern (AKK)", "um" },
+        { "sich amüsieren (AKK)", "über" },
+        { "traurig sein (AKK)", "über" },
+        { "wütend sein (AKK, event or situation)", "über" },
+        { "sich freuen (AKK, already happend)", "über" },
+        { "sich ärgern (AKK)", "über" },
+        { "sich wundern (AKK)", "über" },
+        { "glücklich sein (AKK)", "über" },
+        { "überrascht sein (AKK)", "über" },
+        { "staunen (AKK)", "über" },
+        { "enttäuscht sein (AKK)", "über" },
+        { "lachen (AKK)", "über" },
+        { "nachdenken (AKK)", "über" },
+        { "sich informieren (AKK)", "über" },
+        { "sich interessieren (AKK)", "für" },
+        { "sich bedanken (AKK)", "für" },
+        { "danken (AKK)", "für" },
+        { "lernen (AKK)", "für" }
+    };
+
+    string currentVerb = null;
+    string userPreposition = "";
+    string feedbackMessage = "";
+    bool disableNext = true;
+
+    void NextVerb()
+    {
+        var random = new Random();
+        var verbIndex = random.Next(verbsWithPrepositions.Count);
+        currentVerb = verbsWithPrepositions.Keys.ElementAt(verbIndex);
+        userPreposition = "";
+        feedbackMessage = "";
+        disableNext = true;
+    }
+
+    void CheckPreposition()
+    {
+        var prepositions = verbsWithPrepositions.Values.ToHashSet();
+
+        if (string.IsNullOrEmpty(userPreposition) || !prepositions.Contains(userPreposition))
+        {
+            feedbackMessage = "";
+            disableNext = true;
+            return;
+        }
+
+        if (userPreposition == verbsWithPrepositions[currentVerb])
+        {
+            feedbackMessage = "Richtig!";
+            disableNext = false;
+        }
+        else
+        {
+            feedbackMessage = "Falsch!";
+            disableNext = true;
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        NextVerb();
+        base.OnInitialized();
+    }
+}
