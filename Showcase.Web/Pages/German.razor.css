@@ -13,6 +13,12 @@
     background-color: #323240;
 }
 
+p{
+    height: 2rem;
+    margin-top: .5rem;
+    margin-bottom: 0;
+}
+
 h1, h2 {
     color: #DCF235;
     text-align: center;
@@ -49,6 +55,7 @@ h1 {
     background-color: #DCF235;
     border: none;
     border-radius: 5px;
+    width: 10rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -58,8 +65,15 @@ h1 {
         cursor: not-allowed;
     }
 
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
 .feedback-message {
     text-align: center;
     font-size: 1.2rem;
     color: #DCF235;
+    height: 2rem;
 }

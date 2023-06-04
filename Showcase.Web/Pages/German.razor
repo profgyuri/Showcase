@@ -8,7 +8,7 @@
 
     <div class="verb-container">
         <p>Verb:</p>
-        <p>@currentVerb</p>
+        <p class="verb">@currentVerb</p>
     </div>
 
     <div class="input-container">
@@ -16,12 +16,12 @@
         <input value="@userPreposition" @oninput="@(e => { userPreposition = e.Value.ToString(); CheckPreposition(); })" class="input-field" />
     </div>
 
-    <button @onclick="NextVerb" class="btn" disabled=@disableNext>Next</button>
+    <div class="button-container">
+        <button @onclick="NextVerb" class="btn" disabled=@disableNext>Nächste</button>
+        <button @onclick="RevealAnswer" class="btn">Antwort anzeigen</button>
+    </div>
 
-    @if (!string.IsNullOrEmpty(feedbackMessage))
-    {
-        <p class="feedback-message">@feedbackMessage</p>
-    }
+    <p class="feedback-message">@feedbackMessage</p>
 </div>
 
 @code {
@@ -129,6 +129,12 @@
             feedbackMessage = "Falsch!";
             disableNext = true;
         }
+    }
+
+    void RevealAnswer()
+    {
+        userPreposition = verbsWithPrepositions[currentVerb];
+        CheckPreposition();
     }
 
     protected override void OnInitialized()
