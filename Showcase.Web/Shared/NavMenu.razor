@@ -1,18 +1,18 @@
-﻿@inject NavigationManager navi
+﻿@inject NavigationManager NavigationManager
 
 <nav>
-        <a class="nav-link @(activeIndex == 1 ? "activated" : "")" href="/Showcase/" onclick="@(() => SetActiveIndex(1))">
-                Home
-        </a>
-        <a class="nav-link no-wrap @(activeIndex == 2 ? "activated" : "")" href="/Showcase/bits/" onclick="@(() => SetActiveIndex(2))">
-                Small scripts
-        </a>
-        <a class="nav-link no-wrap @(activeIndex == 3 ? "activated" : "")" href="/Showcase/german/" onclick="@(() => SetActiveIndex(3))">
-            German
-        </a>
+    <a class="nav-link @(activeIndex == 1 ? "activated" : "")" href="/Showcase/" onclick="@(() => SetActiveIndex(1))">
+        Home
+    </a>
+    <a class="nav-link no-wrap @(activeIndex == 2 ? "activated" : "")" href="/Showcase/bits/" onclick="@(() => SetActiveIndex(2))">
+        Small scripts
+    </a>
+    <a class="nav-link no-wrap @(activeIndex == 3 ? "activated" : "")" href="/Showcase/german/" onclick="@(() => SetActiveIndex(3))">
+        German
+    </a>
 </nav>
 
-@code{
+@code {
     int activeIndex = 0;
 
     private void SetActiveIndex(int i)
@@ -22,7 +22,20 @@
 
     protected override void OnInitialized()
     {
-        var uri = new Uri(navi.Uri);
+        NavigationManager.LocationChanged += HandleLocationChanged;
+        SetActiveIndexByUrl();
+        base.OnInitialized();
+    }
+
+    private void HandleLocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+    {
+        SetActiveIndexByUrl();
+        StateHasChanged();
+    }
+
+    private void SetActiveIndexByUrl()
+    {
+        var uri = new Uri(NavigationManager.Uri);
 
         switch (uri.AbsolutePath)
         {
@@ -39,7 +52,10 @@
                 activeIndex = 1; // Default to home if the path is unknown
                 break;
         }
+    }
 
-        base.OnInitialized();
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= HandleLocationChanged;
     }
 }
