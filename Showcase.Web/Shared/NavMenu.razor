@@ -1,24 +1,36 @@
 ﻿@inject NavigationManager NavigationManager
 
 <nav>
-    <a class="nav-link @(activeIndex == 1 ? "activated" : "")" href="/Showcase/" onclick="@(() => SetActiveIndex(1))">
-        Home
-    </a>
-    <a class="nav-link no-wrap @(activeIndex == 2 ? "activated" : "")" href="/Showcase/bits/" onclick="@(() => SetActiveIndex(2))">
-        Small scripts
-    </a>
-    <a class="nav-link no-wrap @(activeIndex == 3 ? "activated" : "")" href="/Showcase/german/" onclick="@(() => SetActiveIndex(3))">
-        German
-    </a>
+    <button @onclick="(() => ToggleNav())" class="hamburger">☰</button>
+    <div class="nav-links @(showNav ? "show" : "")">
+        <a class="nav-link @(activeIndex == 1 ? "activated" : "")" href="/Showcase/" onclick="@(() => SetActiveIndex(1))">
+            Home
+        </a>
+        <a class="nav-link no-wrap @(activeIndex == 2 ? "activated" : "")" href="/Showcase/bits/" onclick="@(() => SetActiveIndex(2))">
+            Small scripts
+        </a>
+        <a class="nav-link no-wrap @(activeIndex == 3 ? "activated" : "")" href="/Showcase/german/" onclick="@(() => SetActiveIndex(3))">
+            German
+        </a>
+    </div>
 </nav>
+
 
 @code {
     int activeIndex = 0;
+    bool showNav = false;
 
     private void SetActiveIndex(int i)
     {
         activeIndex = i;
+        showNav = false; // Optional: close nav when a link is clicked
     }
+
+    void ToggleNav()
+    {
+        showNav = !showNav;
+    }
+
 
     protected override void OnInitialized()
     {
@@ -27,7 +39,7 @@
         base.OnInitialized();
     }
 
-    private void HandleLocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+    private void HandleLocationChanged(object? sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
     {
         SetActiveIndexByUrl();
         StateHasChanged();

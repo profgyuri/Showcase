@@ -78,3 +78,67 @@ nav {
 .no-wrap {
     white-space: nowrap;
 }
+
+/* CSS for the hamburger menu */
+.hamburger {
+    background-color: var(--background-color);
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    box-shadow: 0 0 0 0.133rem var(--accent-color);
+    font-size: 2em;
+    display: none; /* initially hidden */
+}
+
+    .nav-links.show {
+        transform: translateX(0);
+    }
+
+/* CSS for larger screens */
+@media (min-width: 768px) {
+    .hamburger {
+        display: none;
+    }
+
+    .nav-links {
+        display: flex;
+        transform: translateX(0);
+    }
+}
+
+/* CSS for smaller screens */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    nav {
+        flex-direction: column;
+    }
+
+    .nav-links {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 0;
+        overflow: hidden;
+        transition: transform 0.3s ease-in-out;
+        background: var(--background-color);
+        gap: 1rem;
+    }
+
+        .nav-links .nav-link {
+            margin: 0.75rem; 
+        }
+
+        .nav-links.show {
+            padding-top: 2rem;
+            top : 4rem;
+            height: 100vh;
+            width: 100%;
+            z-index: 100;
+        }
+}
