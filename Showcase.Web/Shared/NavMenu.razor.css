@@ -97,7 +97,7 @@ nav {
     }
 
 /* CSS for larger screens */
-@media (min-width: 768px) {
+@media (min-width: 448px) {
     .hamburger {
         display: none;
     }
@@ -109,7 +109,7 @@ nav {
 }
 
 /* CSS for smaller screens */
-@media (max-width: 768px) {
+@media (max-width: 448px) {
     .hamburger {
         display: block;
     }
