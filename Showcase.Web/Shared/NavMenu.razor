@@ -13,10 +13,33 @@
 </nav>
 
 @code{
-    int activeIndex = 1;
+    int activeIndex = 0;
 
     private void SetActiveIndex(int i)
     {
         activeIndex = i;
+    }
+
+    protected override void OnInitialized()
+    {
+        var uri = new Uri(navi.Uri);
+
+        switch (uri.AbsolutePath)
+        {
+            case "/Showcase/":
+                activeIndex = 1;
+                break;
+            case "/Showcase/bits/":
+                activeIndex = 2;
+                break;
+            case "/Showcase/german/":
+                activeIndex = 3;
+                break;
+            default:
+                activeIndex = 1; // Default to home if the path is unknown
+                break;
+        }
+
+        base.OnInitialized();
     }
 }
