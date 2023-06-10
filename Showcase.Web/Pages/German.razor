@@ -1,5 +1,6 @@
 ﻿@page "/german/"
 @page "/Showcase/german/"
+@using System.Security.Cryptography;
 
 <h1>German Practice</h1>
 
@@ -94,16 +95,27 @@
         { "lernen (AKK)", "für" }
     };
 
-    string currentVerb = null;
+    string currentVerb = "";
     string userPreposition = "";
     string feedbackMessage = "";
     bool disableNext = true;
+    Queue<string> verbsQueue = new Queue<string>();
 
     void NextVerb()
     {
-        var random = new Random();
-        var verbIndex = random.Next(verbsWithPrepositions.Count);
-        currentVerb = verbsWithPrepositions.Keys.ElementAt(verbIndex);
+        while (verbsQueue.Contains(currentVerb))
+        {
+            var verbIndex = RandomNumberGenerator.GetInt32(verbsWithPrepositions.Count);
+            currentVerb = verbsWithPrepositions.Keys.ElementAt(verbIndex);
+        }
+
+        if (verbsQueue.Count >= 5)
+        {
+            verbsQueue.Dequeue();
+        }
+
+        verbsQueue.Enqueue(currentVerb);
+
         userPreposition = "";
         feedbackMessage = "";
         disableNext = true;
@@ -147,6 +159,7 @@
 
     protected override void OnInitialized()
     {
+        verbsQueue.Enqueue(currentVerb);
         NextVerb();
         base.OnInitialized();
     }

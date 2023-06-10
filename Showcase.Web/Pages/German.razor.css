@@ -5,7 +5,8 @@
 }
 
 .container {
-    max-width: 21rem;
+    width: 23rem;
+    max-width: 85vw;
     margin: 1rem auto;
     padding: 1rem;
     box-shadow: 0 0 0 0.133rem #DCF235;
