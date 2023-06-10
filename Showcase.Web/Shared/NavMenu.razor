@@ -1,22 +1,73 @@
-﻿@inject NavigationManager navi
+﻿@inject NavigationManager NavigationManager
 
 <nav>
+    <button @onclick="(() => ToggleNav())" class="hamburger">☰</button>
+    <div class="nav-links @(showNav ? "show" : "")">
         <a class="nav-link @(activeIndex == 1 ? "activated" : "")" href="/Showcase/" onclick="@(() => SetActiveIndex(1))">
-                Home
+            Home
         </a>
         <a class="nav-link no-wrap @(activeIndex == 2 ? "activated" : "")" href="/Showcase/bits/" onclick="@(() => SetActiveIndex(2))">
-                Small scripts
+            Small scripts
         </a>
         <a class="nav-link no-wrap @(activeIndex == 3 ? "activated" : "")" href="/Showcase/german/" onclick="@(() => SetActiveIndex(3))">
             German
         </a>
+    </div>
 </nav>
 
-@code{
-    int activeIndex = 1;
+
+@code {
+    int activeIndex = 0;
+    bool showNav = false;
 
     private void SetActiveIndex(int i)
     {
         activeIndex = i;
+        showNav = false; // Optional: close nav when a link is clicked
+    }
+
+    void ToggleNav()
+    {
+        showNav = !showNav;
+    }
+
+
+    protected override void OnInitialized()
+    {
+        NavigationManager.LocationChanged += HandleLocationChanged;
+        SetActiveIndexByUrl();
+        base.OnInitialized();
+    }
+
+    private void HandleLocationChanged(object? sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+    {
+        SetActiveIndexByUrl();
+        StateHasChanged();
+    }
+
+    private void SetActiveIndexByUrl()
+    {
+        var uri = new Uri(NavigationManager.Uri);
+
+        switch (uri.AbsolutePath)
+        {
+            case "/Showcase/":
+                activeIndex = 1;
+                break;
+            case "/Showcase/bits/":
+                activeIndex = 2;
+                break;
+            case "/Showcase/german/":
+                activeIndex = 3;
+                break;
+            default:
+                activeIndex = 1; // Default to home if the path is unknown
+                break;
+        }
+    }
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= HandleLocationChanged;
     }
 }
